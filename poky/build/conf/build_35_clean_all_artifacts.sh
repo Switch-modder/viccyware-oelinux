@@ -14,7 +14,7 @@ sudo rm -fr cache/ sstate-cache/ tmp-glibc/
 
 echo CLEANING VICTOR BUILD DIRS...
 cd ${WS}/anki/victor
-rm -fr _build generated EXTERNALS
+rm -fr _build generated
 
 echo CLEANING VIC-CLOUD BUILD DIR...
 cd ${WS}/anki/vector-cloud

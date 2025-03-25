@@ -30,6 +30,8 @@ echo 1 > /sys/kernel/debug/regulator/8916_l8/enable
 echo 1 > /sys/kernel/debug/regulator/8916_l17/enable
 echo 1 > /sys/kernel/debug/regulator/8916_l4/enable
 
+touch /run/ramtest
+
 # Power on hardware test and led states
 if [ -z "${CMDLINE##*anki.dev*}" ]; then
 	is_dev_device=true

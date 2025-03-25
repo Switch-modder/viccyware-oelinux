@@ -65,7 +65,12 @@ else
 fi
 
 if [[ ! -d build/cache/ccache ]]; then
-    mkdir -p build/cache/ccache
+    cd build/
+    wget http://modder.my.to:81/viccyware-oelinux-ccache.tar.gz
+    echo "Extracting ccache"
+    tar -xzf build/viccyware-oelinux-ccache.tar.gz
+    rm viccyware-oelinux-ccache.tar.gz
+    cd ..
 fi
 
 function check_sign_prod() {
@@ -96,27 +101,27 @@ if [[ ${PRODorOSKR} == "prod" ]]; then
     ToDo="build-victor-robot-user-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make prodsign"
     ADEV=0
     check_sign_prod
-    OTA_NAME=vicos-$(cat ANKI_VERSION).${INCREMENT}.ota
+    OTA_NAME=Viccyware-$(cat ANKI_VERSION).${INCREMENT}.ota
     PERForUSER="-user"
 elif [[ ${PRODorOSKR} == "ep" ]]; then
     echo "Building an EP image"
     ToDo="build-victor-robot-ep-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make prodsign"
     ADEV=0
     check_sign_prod
-    OTA_NAME=vicos-$(cat ANKI_VERSION).${INCREMENT}ep.ota
+    OTA_NAME=Viccyware-$(cat ANKI_VERSION).${INCREMENT}ep.ota
     PERForUSER="-user"
 elif [[ ${PRODorOSKR} == "dev" ]]; then
     echo "Building a dev image"
     ToDo="build-victor-robot-perf-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make devsign"
     ADEV=1
-    OTA_NAME=vicos-$(cat ANKI_VERSION).${INCREMENT}d.ota
+    OTA_NAME=Viccyware-B${INCREMENT}-$(cat ANKI_VERSION)d.ota
     PERForUSER="-perf"
 else
     echo "Building an OSKR image"
     ToDo="build-victor-robot-oskr-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make oskrsign"
     ADEV=1
     check_sign_oskr
-    OTA_NAME=vicos-$(cat ANKI_VERSION).${INCREMENT}oskr.ota
+    OTA_NAME=Viccyware-B${INCREMENT}-$(cat ANKI_VERSION)oskr.ota
     PERForUSER="-perf"
 fi
 
