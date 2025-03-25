@@ -31,27 +31,10 @@
 # Allow ping
 -A INPUT -p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
 
-#
-# DEVELOPMENT TOOLS
-#
+# dev-only
 
 # ssh
 -A INPUT -p tcp -m tcp -m tcp --dport 22 -j ACCEPT
-
-# Other than SSH, which is secured by SSH keys, all dev tools are
-# diabled by default to avoid remote code execution exploits. This can
-# be fixed in two ways:
-#
-# 1. Uncommenting the rules as desired and the
-#    port will now be open to the world
-#
-# 2. Use ssh port forwarding to create a temporary poor-man's VPN:
-#
-#       ssh -L 9889:localhost:8889 ROBOT_IP
-#
-#    Will allow you to access the animation webViz client on
-#    your host computer at http://localhost:9889 until the ssh session
-#    is terminated.
 
 # adb-over-tcp
  -A INPUT -p tcp -m tcp -m tcp --dport 5555 -j ACCEPT

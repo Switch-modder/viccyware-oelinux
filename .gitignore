@@ -1,8 +1,8 @@
 *~
 
 _build/
+build/cache
 bb-files.txt
 **.DS_Store
-/build/cache
 /vm-deps-installed
 /anki-deps

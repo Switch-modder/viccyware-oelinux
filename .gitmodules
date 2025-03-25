@@ -1,7 +1,6 @@
-[submodule "anki/victor"]
-	path = anki/victor
-	url = https://github.com/kercre123/victor
-	branch = snowboy
 [submodule "anki/vector-cloud"]
 	path = anki/vector-cloud
 	url = https://github.com/DDLBots/vector-cloud-fork
+[submodule "anki/victor"]
+	path = anki/victor
+	url = https://github.com/Switch-modder/Viccyware
