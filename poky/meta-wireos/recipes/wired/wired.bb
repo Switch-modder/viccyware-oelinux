@@ -41,12 +41,12 @@ do_package_qa() {
 }
 
 do_install () {
-    mkdir -p ${D}/usr/bin
-    mkdir -p ${D}/usr/lib
-    mkdir -p ${D}/etc/wired
-    cp ${WORKSPACE}/anki/wired/build/wired ${D}/usr/bin/
-    cp ${WORKSPACE}/anki/wired/build/libvector-gobot.so ${D}/usr/lib/
-    cp -r ${WORKSPACE}/anki/wired/webroot ${D}/etc/wired/
+    install -d ${D}/usr/bin
+    install -d ${D}/usr/lib
+    install -d ${D}/etc/wired
+    install -p -m 0755 ${WORKSPACE}/anki/wired/build/wired ${D}/usr/bin/
+    install -m 0755 ${WORKSPACE}/anki/wired/build/libvector-gobot.so ${D}/usr/lib/libvector-gobot.so
+    cp -R --no-dereference --preserve=mode,links -v ${WORKSPACE}/anki/wired/webroot ${D}/etc/wired/webroot
 }
 
 FILES_${PN} += "usr/bin/wired"
@@ -55,9 +55,6 @@ FILES_${PN} += "etc/wired/webroot"
 
 FILES_${PN}-dev = ""
 INSANE_SKIP_${PN} += "dev-so"
-
-
 INSANE_SKIP_${PN} += "ldflags"
-#INSANE_SKIP_${PN} = "${@oe.utils.get_valid_qa_checks(d)}"
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = '1'

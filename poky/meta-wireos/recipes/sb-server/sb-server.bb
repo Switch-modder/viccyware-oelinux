@@ -13,8 +13,8 @@ Anki-Inc.-Proprietary;md5=4b03b8ffef1b70b13d869dbce43e8f09"
 SRC_URI = "file://sb_server"
 
 do_install () {
-    mkdir -p ${D}/anki/bin
-    cp ${WORKDIR}/sb_server ${D}/anki/bin/sb_server
+    install -d ${D}/anki/bin
+    install -p -m 0755 ${WORKDIR}/sb_server ${D}/anki/bin/sb_server
 }
 
 FILES_${PN} += "anki/bin/sb_server"

@@ -27,6 +27,7 @@ do_install_append () {
         sed -i -e 's:#PasswordAuthentication yes:PasswordAuthentication no:' ${WORKDIR}/sshd_config ${D}${sysconfdir}/ssh/sshd_config_readonly
         sed -i '$a    StrictHostKeyChecking no' ${WORKDIR}/ssh_config ${D}${sysconfdir}/ssh/ssh_config
         sed -i '$a    UserKnownHostsFile /dev/null' ${WORKDIR}/ssh_config ${D}${sysconfdir}/ssh/ssh_config
+	sed -i -e 's:/usr/libexec/sftp-server:internal-sftp:' ${WORKDIR}/sshd_config ${D}${sysconfdir}/ssh/sshd_config_readonly
         sed -i -e 's:AuthorizedKeysFile .ssh/authorized_keys:AuthorizedKeysFile .ssh/authorized_keys /data/ssh/authorized_keys:' ${WORKDIR}/sshd_config ${D}${sysconfdir}/ssh/sshd_config
     fi
     install -m 0600 ${WORKDIR}/ssh_host_rsa_key ${D}${sysconfdir}/ssh/ssh_host_rsa_key

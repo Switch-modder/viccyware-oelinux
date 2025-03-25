@@ -5,3 +5,4 @@ build/cache
 bb-files.txt
 **.DS_Store
 /vm-deps-installed
+/anki-deps

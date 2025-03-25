@@ -106,6 +106,11 @@ if [[ ${NO_TTY} == "1" ]]; then
 fi
 
 docker build --build-arg UID=$(id -u $USER) --build-arg GID=$(id -g $USER) -t victor-builder build/
+
+docker run ${BUILD_ARGS_TERM} \
+	-v "$(pwd):/home/build/vicos-oelinux" \
+	victor-builder bash -c "cd ~/vicos-oelinux && ./build/deps.sh"
+
 docker run ${BUILD_ARGS_TERM} \
     -v "$(pwd):/home/build/vicos-oelinux" \
     -v "$(pwd)/anki-deps:/home/build/.anki" \
