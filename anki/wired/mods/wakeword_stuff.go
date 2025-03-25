@@ -62,7 +62,6 @@ func InitListener() {
 	// only works when CPU and RAM are above regular, for some reason
 	DoFreqChange(2)
 	vscreen.InitLCD()
-	vscreen.BlackOut()
 	Recind = 1
 	os.RemoveAll("/run/wired/wakeword")
 	os.MkdirAll("/run/wired/wakeword", 0777)

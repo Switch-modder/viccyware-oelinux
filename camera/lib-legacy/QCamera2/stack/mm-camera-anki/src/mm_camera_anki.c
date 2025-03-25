@@ -286,7 +286,20 @@ int stop_camera_capture()
     }
     break;
 
+    case ANKI_CAM_FORMAT_RGB888_2MP:
+    {
+      rc = victor_stop_rdi(&(camera->lib_handle.test_obj));
+    }
+    break;
+
     case ANKI_CAM_FORMAT_YUV:
+    {
+      rc = victor_stop_preview(&(camera->lib_handle.test_obj));
+      camera->lib_handle.stream_running = 0;
+    }
+    break;
+
+    case ANKI_CAM_FORMAT_YUV_2MP:
     {
       rc = victor_stop_preview(&(camera->lib_handle.test_obj));
       camera->lib_handle.stream_running = 0;

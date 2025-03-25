@@ -40,7 +40,13 @@ UPDATE_VERSION ?= $(shell cat $(OS_VERSION_FILE))
 
 OTA_FILE=$(BUILD)/Viccyware-$(UPDATE_VERSION).ota
 
-all: $(BUILD) $(OTA_FILE)
+ifeq ($(DO_SIGN),1)
+  ota_file_target := $(OTA_FILE)-sign
+else
+  ota_file_target := $(OTA_FILE)
+endif
+
+all: $(BUILD) $(ota_file_target)
 
 clean:
 	rm -rf $(BUILD)
@@ -113,6 +119,17 @@ $(OTA_FILE): $(MANIFEST).ini $(BOOT_GZ_ENC) $(SYS_GZ_ENC)
 	--group=$(GROUP) \
 	-C $(BUILD) \
 	manifest.ini \
+	apq8009-robot-boot.img.gz.enc \
+	apq8009-robot-sysfs.img.gz.enc
+
+$(OTA_FILE)-sign: $(MANIFEST).sha256 $(BOOT_GZ_ENC) $(SYS_GZ_ENC)
+	$(TAR) --transform='flags=r;s|.enc||' -cf $(patsubst %-sign,%, $@) \
+	--mode=$(PERMS) \
+	--owner=$(OWNER) \
+	--group=$(GROUP) \
+	-C $(BUILD) \
+	manifest.ini \
+	manifest.sha256 \
 	apq8009-robot-boot.img.gz.enc \
 	apq8009-robot-sysfs.img.gz.enc
 

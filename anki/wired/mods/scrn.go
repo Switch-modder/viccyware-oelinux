@@ -9,6 +9,7 @@ import (
 
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
+	"github.com/kercre123/vector-gobot/pkg/vscreen"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/basicfont"
 	"golang.org/x/image/font/gofont/gobold"
@@ -16,8 +17,15 @@ import (
 )
 
 func GenerateScreenData(number int) []uint16 {
-	width := 184
-	height := 96
+	var width int
+	var height int
+	if is, _ := vscreen.IsMidas(); is {
+		width = 160
+		height = 80
+	} else {
+		width = 184
+		height = 96
+	}
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	draw.Draw(img, img.Bounds(), &image.Uniform{color.Black}, image.Point{}, draw.Src)
 	drawSmallText(img, "Say your wake-word in:", 10, 20)

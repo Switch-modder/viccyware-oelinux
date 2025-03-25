@@ -84,12 +84,12 @@ func InitMods() {
 func StopVic() {
 	Behavior("DevBaseBehavior")
 	time.Sleep(time.Second * 1)
-	exec.Command("/bin/bash", "-c", "systemctl stop anki-robot.target").Output()
+	exec.Command("/bin/bash", "-c", "systemctl stop anki-robot.target && sleep 1 && systemctl stop mm-anki-camera && systemctl stop mm-qcamera-daemon").Output()
 	time.Sleep(time.Second * 4)
 }
 
 func StartVic() {
-	exec.Command("/bin/bash", "-c", "systemctl start anki-robot.target").Output()
+	exec.Command("/bin/bash", "-c", "systemctl start mm-qcamera-daemon && systemctl start mm-anki-camera && sleep 1 && systemctl start anki-robot.target").Output()
 	time.Sleep(time.Second * 3)
 }
 
