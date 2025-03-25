@@ -1,9 +1,7 @@
 [Unit]
 Description=Anki Camera Service
 SourcePath=/usr/bin/mm-anki-camera
-Wants=vic-engine.service mm-qcamera-daemon.service
-After=vic-engine.service
-PartOf=anki-robot.target
+Wants=mm-qcamera-daemon.service
 
 [Service]
 Restart=always
@@ -12,4 +10,4 @@ Group=camera
 UMask=0007
 
 [Install]
-WantedBy=anki-robot.target
+WantedBy=multi-user.target
