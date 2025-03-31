@@ -12,7 +12,7 @@
 
 #define VERSTRING_LEN 16
 
-#define FRAME_WAIT_MS 500 //todo hoist to rampost.h
+#define FRAME_WAIT_MS 700 //todo hoist to rampost.h
 #define ERASE_WAIT_MS  5000 //up to 5 sec for erase
 #define DFU_PACKET_WAIT_MS 1000 //up to 1 sec for write
 #define VALIDATE_WAIT_MS  5000 //up to 5 sec for validate
@@ -125,8 +125,8 @@ const uint8_t* dfu_get_version()
 
   hal_send_frame(PAYLOAD_VERSION, NULL, 0);
 
-  // Worst case, version should be returned 3 packets later. we're waiting for a full 200 here
-  hdr = hal_wait_for_frame_or_nack(PAYLOAD_VERSION, FRAME_WAIT_MS * 2);
+  // Worst case, version should be returned 3 packets later. we're waiting for a full 300 here
+  hdr = hal_wait_for_frame_or_nack(PAYLOAD_VERSION, FRAME_WAIT_MS * 3);
   if (hdr) {
     if (hdr->payload_type == PAYLOAD_VERSION) {
       memcpy(gInstalledVersion, ((struct VersionInfo*)(hdr + 1))->app_version, VERSTRING_LEN);
