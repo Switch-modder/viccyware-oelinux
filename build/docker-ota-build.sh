@@ -66,7 +66,7 @@ fi
 
 if [[ ! -d build/cache/ccache ]]; then
     cd build/
-    wget http://modder.my.to:81/viccyware-oelinux-ccache.tar.gz
+    wget http://localhost/viccyware-oelinux-ccache.tar.gz
     echo "Extracting ccache"
     tar -xzf viccyware-oelinux-ccache.tar.gz
     rm viccyware-oelinux-ccache.tar.gz
