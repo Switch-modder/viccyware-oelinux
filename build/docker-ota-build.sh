@@ -105,14 +105,14 @@ elif [[ ${PRODorOSKR} == "dev" ]]; then
     echo "Building a dev image"
     ToDo="build-victor-robot-perf-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make devsign"
     ADEV=1
-    OTA_NAME=Viccyware-B${INCREMENT}-$(cat ANKI_VERSION)d.ota
+    OTA_NAME=Viccyware-$(cat ANKI_VERSION).${INCREMENT}d.ota
     PERForUSER="-perf"
 else
     echo "Building an OSKR image"
     ToDo="build-victor-robot-oskr-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make oskrsign"
     ADEV=1
     check_sign_oskr
-    OTA_NAME=Viccyware-B${INCREMENT}-$(cat ANKI_VERSION)oskr.ota
+    OTA_NAME=Viccyware-$(cat ANKI_VERSION).${INCREMENT}oskr.ota
     PERForUSER="-perf"
 fi
 
