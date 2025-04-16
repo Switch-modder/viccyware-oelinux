@@ -64,6 +64,10 @@ else
 	BOOT_SIGNING_PASSWORD=$3
 fi
 
+if [[ ! -d build/cache/ccache ]]; then
+    mkdir -p build/cache/ccache
+fi
+
 function check_sign_prod() {
     if openssl rsa -in ota/qtipri.encrypted.key -passin pass:"$BOOT_SIGNING_PASSWORD" -noout 2>/dev/null; then
         echo "Prod boot image key password confirmed to be correct!"
@@ -89,11 +93,11 @@ function check_sign_oskr() {
 
 if [[ ${PRODorOSKR} == "prod" ]]; then
     echo "Building a prod image"
-    ToDo="build-victor-robot-user-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make prodsign"
+    ToDo="build-victor-robot-perf-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make prodsign"
     ADEV=0
     check_sign_prod
     OTA_NAME=Viccyware-$(cat ANKI_VERSION).${INCREMENT}.ota
-    PERForUSER="-user"
+    PERForUSER="-perf"
 elif [[ ${PRODorOSKR} == "ep" ]]; then
     echo "Building an EP image"
     ToDo="build-victor-robot-ep-image && export IMG_DIR=../poky/build/tmp-glibc/deploy/images/apq8009-robot-robot-perf && cd ~/vicos-oelinux/ota && export BOOT_IMAGE_SIGNING_PASSWORD=$BOOT_SIGNING_PASSWORD && make prodsign"
