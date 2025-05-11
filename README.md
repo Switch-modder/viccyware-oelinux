@@ -1,5 +1,8 @@
 # viccyware-oelinux
 
+> [!DEPRECATED REPOSITORY]
+> **This repository has been depreciated in favor of using the new wire-os repo as a base. Please use https://github.com/The-Viccyware-Project/Viccyware-oelinux**
+
 This repository contains the embedded OS that runs on victor hardware.
 `vicos-oelinux` *is* the repo you are looking for if you want to create a full OTA. It
 If you are looking for Viccyware embedded firmware, robotics, animation and engine layers checkout [Viccyware](https://github.com/Switch-modder/Viccyware).
