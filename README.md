@@ -1,6 +1,6 @@
 # viccyware-oelinux
 
-> [!DEPRECATED REPOSITORY]
+> [!WARNING]
 > **This repository has been depreciated in favor of using the new wire-os repo as a base. Please use https://github.com/The-Viccyware-Project/Viccyware-oelinux**
 
 This repository contains the embedded OS that runs on victor hardware.
